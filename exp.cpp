@@ -958,7 +958,10 @@ vector<UnknownToInvalidDowngrade> UnknownToInvalid( ROAGroup* newPrefixes, ROAGr
   return downgrades;
 }
 
-void OutputDowngrades( vector<ROA*>* oldROAs, vector<ROA*>* newROAs, ostream* output ) {
+
+
+
+void OutputDowngrades( vector<ROA*>* oldROAs, vector<ROA*>* newROAs, ostream* output, bool U2I ) {
   vector<PrefixRange*> validToUnknownPrefixes; 
 
 
@@ -1000,11 +1003,13 @@ void OutputDowngrades( vector<ROA*>* oldROAs, vector<ROA*>* newROAs, ostream* ou
 
   }
   
-  //unknown to invalid
-  vector<UnknownToInvalidDowngrade> unknownToInvalid = UnknownToInvalid( &newPrefixes, &oldPrefixes, newROAs);
-    
-  for (UnknownToInvalidDowngrade effect:  unknownToInvalid){
-    if( ! effect.empty() ) (*output)<<effect.toJSON();
+  if( U2I ){
+    //unknown to invalid
+    vector<UnknownToInvalidDowngrade> unknownToInvalid = UnknownToInvalid( &newPrefixes, &oldPrefixes, newROAs);
+      
+    for (UnknownToInvalidDowngrade effect:  unknownToInvalid){
+      if( ! effect.empty() ) (*output)<<effect.toJSON();
+    }
   }
 
 }

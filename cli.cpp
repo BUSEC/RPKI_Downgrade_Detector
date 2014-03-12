@@ -64,7 +64,16 @@ int readScanROAFile(vector<ROA*>* ROAs, string* filepath){
 
 
 int main(int argc, char* argv[]){
-	if (argc != 4){ cout<<"detector <old file> <new file> <outputfile>"<<endl; return 0; }
+
+	bool U2I = false;
+
+	if (argc == 5 ){ 
+		if( string(argv[1]) == "-U2I" ){
+			U2I = true;
+		} else{
+			cout<<"detector <old file> <new file> <outputfile>"<<endl; return 0; 
+		}	
+	} else if (argc != 4){ cout<<"detector <old file> <new file> <outputfile>"<<endl; return 0; }
 
 	string oldFilepath = string(argv[1]);
 	string newFilepath = string(argv[2]);
@@ -81,7 +90,7 @@ int main(int argc, char* argv[]){
 	
 	ofstream outputFile(outputFilepath.c_str());
 
-	OutputDowngrades(&oldROAs, &newROAs, &outputFile);
+	OutputDowngrades(&oldROAs, &newROAs, &outputFile, U2I);
 
 	cout<<"finished sucessfully"<<endl;
 }
