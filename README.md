@@ -3,13 +3,20 @@
 
 ## Overview
 
-detector <old file> <new file> <outputfile>
+./detector.out <old file> <new file> <outputfile>
 
 optional flags:
 
 --U2I - enables unknown to invalid downgrade reporting, beware generates large files.
 
 
+The RPKI Downgrade Detector takes the state of RPKI at two points in time (called old and new) and computes the downgrades that have occurred when the earlier state transitioned to the newer state.
+
+Our tool detects downgrades in the validity state of all possible routes, regardless of whether or not they are announced in BGP. It can therefore be used as an alert system for potentially-harmful changes to the RPKI, independent of information available from a specific BGP vantage point. 
+
+The main datastructure of the RPKI Downgrade Detector is interval trees.
+These interval trees are used to store the validity states of all possible routes and can be computed in O(n log n) time, where n is the number of (prefix, AS, maxlength)-tuples.
+This datastructure allow us to efficiently compute all downgrades from one state of the RPKI to another.
 
 
 ## Getting Setup
