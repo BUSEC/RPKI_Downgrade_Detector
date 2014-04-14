@@ -54,7 +54,7 @@ make all
 ```
 
 #### Important! 
-For the rest of this documentation when we use the command './scan_roas', we will be refering to the modified scan_roas command in this directory. You may have to reference this command by exact path to avoid confusion the default scan_roas.
+For the rest of this documentation when we use the command './scan_roas', we will be referring to the modified scan_roas command in this directory. You may have to reference this command by exact path to avoid confusion the default scan_roas.
 
 ### Step 3: Setup Rcynic.
 
@@ -103,5 +103,3 @@ The downgrade detector writes each downgrade to the output file as a new line. E
 * EFFECT - A list of IP prefix ranges downgraded. 
 
 We have developed a javascript library for parsing and visualizing these tools. It is currently awaiting release.
-
-
